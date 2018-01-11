@@ -1,6 +1,6 @@
 # client-vuejs
 
-> Employee manager application with vuejs and nodejs
+> Employee manager web application with vuejs
 
 ## Build Setup
 

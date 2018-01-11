@@ -1,7 +1,7 @@
 {
   "name": "client-vuejs",
   "version": "1.0.0",
-  "description": "Employee manager application with vuejs and nodejs",
+  "description": "Employee manager web application with vuejs",
   "author": "Giovanni Bauermeister <giovanni.bauermeister@gmail.com>",
   "private": true,
   "scripts": {
