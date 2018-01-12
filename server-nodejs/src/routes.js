@@ -1,7 +1,7 @@
+const AuthenticationController = require('./controllers/AuthenticationController')
+const RegisterEmployeeController = require('./controllers/RegisterEmployeeController')
+
 module.exports = app => {
-  app.post('/register', (req, res) => {
-    res.send({
-      message: `Hello ${req.body.email}! you user was registered`
-    })
-  })
+  app.post('/register', AuthenticationController.register)
+  app.post('/registeremployee', RegisterEmployeeController.registerEmployee)
 }
