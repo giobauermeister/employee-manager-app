@@ -1,62 +1,103 @@
 <template>
-    <v-layout column>
-        <v-flex xs6 offset-xs3>
-            <div class="white elevation-2">
-                <v-toolbar color="blue darken-3" dark app clipped-left fixed>
-                    <v-toolbar-title class="ml-0 pl-3">Novo Funcionário</v-toolbar-title>
-                    <v-text-field light solo prepend-icon="search" placeholder="Search" style="max-width: 500px; min-width: 128px"></v-text-field>
-                    <v-spacer></v-spacer>
-                    <v-toolbar-side-icon class="hidden-md-and-up"></v-toolbar-side-icon>
-                    <v-toolbar-items class="hidden-sm-and-down">
-                        <v-btn flat>Link One</v-btn>
-                        <v-btn flat>Link Two</v-btn>
-                        <v-btn flat>Link Three</v-btn>
-                    </v-toolbar-items>
-                </v-toolbar>
+  <div id="new-employee">
+    <div class="row" style="padding-top:50px;">
+      <div class="col s12">
+        <div class="card z-depth-3">
+          <div class="card-content">
+            <span class="card-title">
+              <h4>Registrar Novo Funcionário</h4>          
+            </span>
+            <div class="row">
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="icon_prefix" type="text" class="validate" v-model="name">
+                    <label for="icon_prefix">Nome</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">work</i>
+                    <input id="icon_work" type="text" class="validate" v-model="title">
+                    <label for="icon_work">Cargo</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">work</i>
+                    <input id="icon_dept" type="text" class="validate" v-model="department">
+                    <label for="icon_dept">Departamento</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">phone</i>
+                    <input id="icon_telephone" type="tel" class="validate" v-model="cellphone">
+                    <label for="icon_telephone">Telefone</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">email</i>
+                    <input id="icon_email" type="email" class="validate" v-model="email">
+                    <label for="icon_email">Email</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">home</i>
+                    <input id="icon_home" type="text" class="validate" v-model="address">
+                    <label for="icon_home">Endereço</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">fingerprint</i>
+                    <input id="icon_fingerprint" type="text" class="validate" v-model="tagid">
+                    <label for="icon_fingerprint">Tag ID</label>
+                  </div>
+                </div>
+              </form>
             </div>
-        </v-flex>    
-    </v-layout>    
-    <!--div id="new-employee">
-        <h3>Novo Funcionário</h3>
-        <v-text-field name="tagid" label="Tag ID" id="tagid" v-model="tagid"></v-text-field>
-        <input type="text" name="tagid" placeholder="Tag ID" v-model="tagid">
-        <input type="text" name="nome" placeholder="Nome" v-model="name">
-        <input type="text" name="cargo" placeholder="Cargo" v-model="title">
-        <input type="text" name="departamento" placeholder="Departamento" v-model="department">
-        <input type="text" name="celular" placeholder="Celular" v-model="cellphone">
-        <input type="text" name="endereco" placeholder="Endereço" v-model="address">
-        <button @click="registerEmployee">Registrar Funcionário</button>
-        <button >Cancelar</button>
-    </div-->
+            <!--router-link to="/new">
+              <a @click="registerEmployee" class="waves-effect waves-light btn light-blue darken-1 z-depth-4"><i class="material-icons left">check</i>Salvar</a>
+            </router-link-->
+            <a @click="registerEmployee" class="waves-effect waves-light btn light-blue darken-1 z-depth-4"><i class="material-icons left">check</i>Salvar</a>
+            <router-link to="/">
+              <a class="waves-effect waves-light btn red darken-1 z-depth-4"><i class="material-icons left">close</i>Cancelar</a>
+            </router-link>            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import RegisterEmployeeService from "@/services/RegisterEmployeeService"
 export default {
-    name: 'new-employee',
-    data () {
-        return  {
-            tagid: '',
-            name: '',
-            title: '',
-            department: '',
-            cellphone: '',
-            address: ''
-        }
-    },
-    methods: {
-        async registerEmployee () {
-            const response = await RegisterEmployeeService.registerEmployee({
-                TagID: this.tagid,
-                EmployeeName: this.name,
-                Title: this.title,
-                Department: this.department,
-                Cellphone: this.cellphone,
-                Address: this.address
-            })
-            console.log(response.data)
-        }
+  name: 'new-employee',
+  data () {
+    return {
+      tagid: '',
+      name: '',
+      title: '',
+      department: '',
+      cellphone: '',
+      email: '',
+      address: ''
     }
+  },
+  methods: {
+    async registerEmployee () {
+      const response = await RegisterEmployeeService.registerEmployee({
+        TagID: this.tagid,
+        EmployeeName: this.name,
+        Title: this.title,
+        Department: this.department,
+        Cellphone: this.cellphone,
+        Email: this.email,
+        Address: this.address
+      })
+      if(response.data.error === 'error') {
+        console.log(response.data.errorMsg);
+        window.alert(response.data.message);
+      } else {
+        console.log(response.data);
+        window.alert('Dados salvos com sucesso!');
+        this.$router.push('/')
+      }
+    }
+  }
 }
 </script>
 

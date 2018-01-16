@@ -3,12 +3,22 @@ module.exports = (sequelize, DataTypes) =>
     TagID: {
       type: DataTypes.STRING,
       unique: true,
-      primaryKey: true
+      primaryKey: true,
+      validate: {
+        notEmpty: true
+      }
     },
-    EmployeeName: DataTypes.STRING,
+    EmployeeName: {
+      type: DataTypes.STRING,
+      unique: false,
+      validate: {
+        notEmpty: true
+      }
+    },
     Title: DataTypes.STRING,
     Department: DataTypes.STRING,
     Cellphone: DataTypes.STRING,
+    Email: DataTypes.STRING,
     Address: DataTypes.STRING
   }, {
     timestamps: false
