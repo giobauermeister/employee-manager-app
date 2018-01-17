@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) =>
     TagID: {
       type: DataTypes.STRING,
       unique: true,
-      primaryKey: true,
       validate: {
         notEmpty: true
       }

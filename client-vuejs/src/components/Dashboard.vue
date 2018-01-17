@@ -7,15 +7,19 @@
             <span class="card-title">
               <h4>Funcionários Registrados</h4>
               <router-link to="/new">
-                <a class="waves-effect waves-light btn light-blue darken-1 z-depth-4"><i class="material-icons left">add</i>Adicionar</a>
+                <a class="waves-effect waves-light btn light-blue darken-1 z-depth-4"><i class="material-icons left">person_add</i>Adicionar</a>
               </router-link>          
             </span>
             <ul class="collection">
-              <li href="/" v-for="employee in employees" v-bind:key="employee.TagID" class="collection-item avatar">
+              <li v-for="employee in employees" v-bind:key="employee.TagID" class="collection-item avatar">
+                <img v-bind:src="employee.ImgLink" class="circle">
                 <p><font size="3"><b>{{employee.EmployeeName}}</b></font></p>
-                <p>{{employee.Title}}</p>              
+                <p>{{employee.Title}}</p> 
+                <router-link class="secondary-content" v-bind:to="{name: 'view-employee', params: {employee_id: employee.TagID}}">
+                  <i class="material-icons icon-blue">info_outline</i>
+                </router-link>             
               </li>
-            </ul>            
+            </ul>           
           </div>
         </div>
       </div>
@@ -33,7 +37,7 @@ export default {
     }
   },
   created () {
-    console.log('created');
+    // console.log('created');
     // FetchEmployeesService.fetchEmployees();
     FetchEmployeesService.fetchEmployees().then(employeeData => {
       employeeData.data.forEach(doc => {
@@ -45,11 +49,14 @@ export default {
           'Department': doc.Department,
           'Cellphone': doc.Cellphone,
           'Email': doc.Email,
-          'Address': doc.Address
+          'Address': doc.Address,
+          'ImgLink': '../../static/' + doc.TagID + '.png'
         }
         console.log(data.EmployeeName)
         console.log(data.Title)
         this.employees.push(data)
+        // console.log(data.ImgLink)
+        
                 
       })
       // console.log(employeeData)
@@ -60,4 +67,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+i.icon-blue {
+    color: #039be5;
+}
+</style>
 

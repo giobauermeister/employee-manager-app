@@ -19,6 +19,31 @@ module.exports = {
         errorMsg: err
       })
     }
+  },
+  async fetchOneEmployee (req, res) {
+    console.log('fetching one employee')
+    console.log(req.body.params.employee_id) // imprime ID
+    // res.send(req.body.params.employee_id)
+    try {
+      // console.log('fetching inside try')
+      const employeeInfo = await Employees.findAll({
+        where: {
+          'TagID': req.body.params.employee_id
+        }
+      })
+      const employeeData = JSON.parse(JSON.stringify(employeeInfo))
+      console.log(employeeData)
+      res.send(employeeData)
+      // res.send(employees.toJSON())
+      // console.log(Employees.findAll().to)
+      // console.log('got elements!')
+    } catch (err) {
+      console.log(err)
+      res.send({
+        error: 'error',
+        errorMsg: err
+      })
+    }
   }
 }
 // const {Employees} = require('../models')
