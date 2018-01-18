@@ -4,6 +4,8 @@ const cors = require('cors')
 const morgan = require('morgan')
 const {sequelize} = require('./models')
 const config = require('./config/config')
+const multer = require('multer')
+const path = require('path')
 
 const app = express()
 app.use(morgan('combined'))
@@ -11,6 +13,29 @@ app.use(bodyParser.json())
 app.use(cors())
 
 require('./routes')(app)
+
+const storage = multer.diskStorage({
+  destination: './public',
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+})
+const upload = multer({
+  storage: storage
+}).single('myImage')
+
+app.post('/uploadphoto', (req, res) => {
+  upload(req, res, (err) => {
+    console.log(req.body)
+    if (err) {
+      console.log(err)
+      res.send({'err': 'error'})
+    } else {
+      console.log(req.file)
+      res.send({'msg': 'OK'})
+    }
+  })
+})
 
 sequelize.sync()
   .then(() => {

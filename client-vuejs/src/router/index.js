@@ -5,6 +5,7 @@ import Dashboard from '@/components/Dashboard'
 import EditEmployee from '@/components/EditEmployee'
 import NewEmployee from '@/components/NewEmployee'
 import ViewEmployee from '@/components/ViewEmployee'
+import UploadPhoto from '@/components/UploadPhoto'
 
 Vue.use(Router)
 
@@ -19,6 +20,11 @@ export default new Router({
       path: '/new',
       name: 'new-employee',
       component: NewEmployee
+    },
+    {
+      path: '/upload',
+      name: 'upload-photo',
+      component: UploadPhoto
     },
     {
       path: '/:employee_id',

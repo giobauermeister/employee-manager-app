@@ -11,7 +11,7 @@
               <form class="col s12">
                 <div class="row">
                   <div class="input-field col s6">
-                    <i class="material-icons prefix">account_circle</i>
+                    <i class="material-icons prefix">person</i>
                     <input v-model="EmployeeName" id="icon_prefix" type="text">
                     <label class="active" for="icon_prefix">Nome</label>
                   </div>
@@ -118,24 +118,26 @@ export default {
       })
     },
     async updateEmployee () {
-      const response = await UpdateEmployeeService.updateEmployee({
-        id: this.id,
-        TagID: this.TagID,
-        EmployeeName: this.EmployeeName,
-        Title: this.Title,
-        Department: this.Department,
-        Cellphone: this.Cellphone,
-        Email: this.Email,
-        Address: this.Address
-      })
-      if(response.data.error === 'error') {
-        console.log(response.data.errorMsg);
-        window.alert(response.data.message);
-      } else {
-        console.log(response.data);
-        window.alert('Dados editados com sucesso!');
-        this.$router.push('/')
-      }
+      if (confirm('Tem certeza de que deseja salvar?')) {
+        const response = await UpdateEmployeeService.updateEmployee({
+          id: this.id,
+          TagID: this.TagID,
+          EmployeeName: this.EmployeeName,
+          Title: this.Title,
+          Department: this.Department,
+          Cellphone: this.Cellphone,
+          Email: this.Email,
+          Address: this.Address
+        })
+        if(response.data.error === 'error') {
+          console.log(response.data.errorMsg);
+          window.alert(response.data.message);
+        } else {
+          console.log(response.data);
+          window.alert('Dados editados com sucesso!');
+          this.$router.push('/')
+        }
+      }      
     }
   }
 }

@@ -12,7 +12,9 @@
   "dependencies": {
     "axios": "^0.17.1",
     "vue": "^2.5.2",
+    "vue-picture-input": "^2.0.1",
     "vue-router": "^3.0.1",
+    "vue2-dropzone": "^3.0.3",
     "vuetify": "^0.17.6"
   },
   "devDependencies": {

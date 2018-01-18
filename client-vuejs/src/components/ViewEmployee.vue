@@ -19,12 +19,12 @@
               <li class="collection-item"><p style="display: inline;"><font size="3"><b>Tag ID: </b></font></p>{{TagID}}</li>
             </ul>
             <router-link to="/">
-              <a class="waves-effect waves-light btn light-blue darken-1 z-depth-4"><i class="material-icons left">keyboard_arrow_left</i>Voltar</a>
+              <a class="waves-effect waves-light btn grey z-depth-4"><i class="material-icons left">keyboard_arrow_left</i>Voltar</a>
             </router-link>
             <router-link v-bind:to="'/edit/'+ TagID">
               <a class="waves-effect waves-light btn light-blue darken-1 z-depth-4"><i class="material-icons left">create</i>Editar</a>
             </router-link>
-            <a @click="deleteEmployee" class="waves-effect waves-light btn red darken-1 z-depth-4"><i class="material-icons left">delete_forever</i>Excluir</a>          
+            <a @click="deleteEmployee" class="waves-effect waves-light btn red lighten-1 z-depth-4"><i class="material-icons left">delete_forever</i>Excluir</a>          
           </div>
         </div>
       </div>
@@ -87,7 +87,7 @@ export default {
     async deleteEmployee () {
       console.log('inside method deleteEmployee')
       console.log(this.TagID)
-      if (confirm('Tem certeza?')) {
+      if (confirm('Tem certeza de que deseja deletar?')) {
         DeleteEmployeeService.deleteEmployee({TagID: this.TagID}).then(data => {
           console.log(data.status)
           if (data.status == '200') {
