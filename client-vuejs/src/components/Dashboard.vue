@@ -50,7 +50,7 @@ export default {
           'Cellphone': doc.Cellphone,
           'Email': doc.Email,
           'Address': doc.Address,
-          'ImgLink': '../../static/' + doc.TagID + '.png'
+          'ImgLink': '../../static/userphotos/' + doc.TagID + '.png'
         }
         // console.log(data.EmployeeName)
         // console.log(data.Title)
