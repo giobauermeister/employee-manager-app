@@ -39,6 +39,7 @@ export default {
   name: 'view-employee',
   data () {
     return {
+      id: '',
       TagID: null,
       EmployeeName: null,
       Title: null,
@@ -62,6 +63,7 @@ export default {
           vm.Email = doc.Email
           vm.Address = doc.Address
           vm.ImgLink = '../../static/' + doc.TagID + '.png'
+          vm.id = doc.id
         })        
       })            
     })
@@ -73,6 +75,7 @@ export default {
     fetchData () {
       FetchEmployeesService.fetchOneEmployee(this.$route.employee_id).then(employeeData => {
         employeeData.data.forEach(doc => {
+          this.id = doc.id
           this.TagID = doc.TagID
           this.EmployeeName = doc.EmployeeName,
           this.Title = doc.Title,
@@ -88,7 +91,8 @@ export default {
       console.log('inside method deleteEmployee')
       console.log(this.TagID)
       if (confirm('Tem certeza de que deseja deletar?')) {
-        DeleteEmployeeService.deleteEmployee({TagID: this.TagID}).then(data => {
+        DeleteEmployeeService.deleteEmployee({id: this.id}).then(data => {
+          console.log('Recebido DB id: ', this.id)          
           console.log(data.status)
           if (data.status == '200') {
           window.alert('Funcionário deletado com sucesso!')

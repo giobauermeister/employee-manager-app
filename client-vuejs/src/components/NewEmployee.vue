@@ -56,13 +56,13 @@
                   </div>
 
                   <div class="file-field input-field col s6">                  
-                      <div class="btn grey waves-effect waves-light z-depth-4">
-                        <span>Photo Upload</span>
-                        <input name="myImage" type="file" @change="onImgSelected">
-                      </div>
-                      <div class="file-path-wrapper">
-                        <input class="file-path" type="text">
-                      </div>
+                    <div class="btn grey waves-effect waves-light z-depth-4">
+                      <span>Photo Upload</span>
+                      <input name="myImage" type="file" @change="onImgSelected">
+                    </div>
+                    <div class="file-path-wrapper">
+                      <input class="file-path" type="text">
+                    </div>
                   </div>
 
                 </div>
@@ -122,17 +122,20 @@ export default {
           window.alert(response.data.message);
         } else {
           console.log(response.data);
+
+          console.log('SENDING PHOTO!')      
+          const formData = new FormData()
+          formData.append('myImage', this.photo, this.tagid + '.png') // renomeia o arquivo da foto com o campo TagID
+          formData.append('tagid', this.tagid)
+          RegisterEmployeeService.uploadPhoto(formData).then(responseUpload => {
+            console.log('response from photo upload: ')        
+            console.log(responseUpload)
+          })          
+
           window.alert('Funcionário criado com sucesso!');
+
           this.$router.push('/')
-        }
-        console.log('SENDING PHOTO!')      
-        const formData = new FormData()
-        formData.append('myImage', this.photo, this.tagid + '.png')
-        console.log('try rename FILE!!!!!!')
-        formData.append('tagid', this.tagid)
-        var response = RegisterEmployeeService.uploadPhoto(formData)
-        console.log('response from photo upload: ')        
-        console.log(response)        
+        }        
       }      
     }
   }

@@ -10,41 +10,59 @@
             <div class="row">
               <form class="col s12">
                 <div class="row">
+
                   <div class="input-field col s6">
                     <i class="material-icons prefix">person</i>
                     <input v-model="EmployeeName" id="icon_prefix" type="text">
                     <label class="active" for="icon_prefix">Nome</label>
                   </div>
+
                   <div class="input-field col s6">
                     <i class="material-icons prefix">work</i>
                     <input v-model="Title" id="icon_work" type="text">
                     <label class="active" for="icon_work">Cargo</label>
                   </div>
+
                   <div class="input-field col s6">
                     <i class="material-icons prefix">work</i>
                     <input v-model="Department" id="icon_dept" type="text">
                     <label class="active" for="icon_dept">Departamento</label>
                   </div>
+
                   <div class="input-field col s6">
                     <i class="material-icons prefix">phone</i>
                     <input v-model="Cellphone" id="icon_telephone" type="text">
                     <label class="active" for="icon_telephone">Telefone</label>
                   </div>
+
                   <div class="input-field col s6">
                     <i class="material-icons prefix">email</i>
                     <input v-model="Email" id="icon_email" type="text">
                     <label class="active" for="icon_email">Email</label>
                   </div>
+
                   <div class="input-field col s6">
                     <i class="material-icons prefix">home</i>
                     <input v-model="Address" id="icon_home" type="text">
                     <label class="active" for="icon_home">Endereço</label>
                   </div>
+
                   <div class="input-field col s6">
                     <i class="material-icons prefix">fingerprint</i>
                     <input v-model="TagID" id="icon_fingerprint" type="text">
                     <label class="active" for="icon_fingerprint">Tag ID</label>
                   </div>
+
+                  <div class="file-field input-field col s6">                  
+                    <div class="btn grey waves-effect waves-light z-depth-4">
+                      <span>Photo Upload</span>
+                      <input name="myImage" type="file" @change="onImgSelected">
+                    </div>
+                    <div class="file-path-wrapper">
+                      <input class="file-path" type="text">
+                    </div>
+                  </div>
+
                 </div>
               </form>
             </div>
@@ -54,7 +72,7 @@
             <!--a class="waves-effect waves-light btn light-blue darken-1 z-depth-4"><i class="material-icons left">check</i>Salvar</a-->
             <a @click="updateEmployee" class="waves-effect waves-light btn light-blue darken-1 z-depth-4"><i class="material-icons left">check</i>Salvar</a>
             <router-link to="/">
-              <a class="waves-effect waves-light btn red darken-1 z-depth-4"><i class="material-icons left">close</i>Cancelar</a>
+              <a class="waves-effect waves-light btn red lighten-1 z-depth-4"><i class="material-icons left">close</i>Cancelar</a>
             </router-link>            
           </div>
         </div>
@@ -66,6 +84,7 @@
 <script>
 import FetchEmployeesService from "@/services/FetchEmployeesService"
 import UpdateEmployeeService from "@/services/UpdateEmployeeService"
+import RegisterEmployeeService from "@/services/RegisterEmployeeService"
 export default {
   name: 'edit-employee',
   data () {
@@ -78,7 +97,8 @@ export default {
       Cellphone: null,
       Email: null,
       Address: null,
-      ImgLink: null,  
+      ImgLink: null,
+      photo: ''  
     }
   },
   beforeRouteEnter (to, from, next) {
@@ -117,6 +137,12 @@ export default {
         })  
       })
     },
+    onImgSelected (e) {
+      var img = e.target.files || e.dataTransfer.files
+      console.log(img[0].name)      
+      this.photo = img[0]
+      console.log('photo selected')      
+    },
     async updateEmployee () {
       if (confirm('Tem certeza de que deseja salvar?')) {
         const response = await UpdateEmployeeService.updateEmployee({
@@ -134,6 +160,18 @@ export default {
           window.alert(response.data.message);
         } else {
           console.log(response.data);
+
+
+          console.log('SENDING PHOTO!')      
+          const formData = new FormData()
+          formData.append('myImage', this.photo, this.TagID + '.png') // renomeia o arquivo da foto com o campo TagID
+          formData.append('tagid', this.TagID)
+          RegisterEmployeeService.uploadPhoto(formData).then(responseUpload => {
+            console.log('response from photo upload: ')        
+            console.log(responseUpload)
+          })
+
+
           window.alert('Dados editados com sucesso!');
           this.$router.push('/')
         }

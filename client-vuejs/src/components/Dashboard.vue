@@ -52,8 +52,8 @@ export default {
           'Address': doc.Address,
           'ImgLink': '../../static/' + doc.TagID + '.png'
         }
-        console.log(data.EmployeeName)
-        console.log(data.Title)
+        // console.log(data.EmployeeName)
+        // console.log(data.Title)
         this.employees.push(data)
         // console.log(data.ImgLink)
         

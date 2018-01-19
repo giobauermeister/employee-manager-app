@@ -15,7 +15,7 @@ app.use(cors())
 require('./routes')(app)
 
 const storage = multer.diskStorage({
-  destination: './public',
+  destination: './public/photos',
   filename: function (req, file, cb) {
     cb(null, file.originalname)
   }

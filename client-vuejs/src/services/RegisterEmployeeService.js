@@ -5,8 +5,8 @@ export default {
     return Api().post('registeremployee', employeeData)
   },
   uploadPhoto (photo) {
-    console.log('inside register service upload photo')
-    console.log(photo)        
+    // console.log('inside register service upload photo')
+    // console.log(photo)        
     return Api().post('uploadphoto', photo)
   }
 }
