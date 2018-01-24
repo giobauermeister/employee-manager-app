@@ -1,11 +1,33 @@
 <template>
   <div id="new-employee">
+
+
     <div class="row" style="padding-top:50px;">
+      
+      <!--div align="center" class="col s12">
+        <circle10 v-if="show == true"></circle10>
+      </div-->
+      <div v-if="show" align="center" class="col s12">
+        <div class="preloader-wrapper big active">
+          <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
       <div class="col s12">
         <div class="card z-depth-3">
           <div class="card-content">
             <span class="card-title">
-              <h4>Registrar Novo Funcionário</h4>          
+              <h4 >Registrar Novo Funcionário</h4>          
             </span>
 
             <div class="row">
@@ -74,7 +96,8 @@
             <a @click="registerEmployee" type="submit" class="waves-effect waves-light btn light-blue darken-1 z-depth-4"><i class="material-icons left">check</i>Salvar</a>
             <router-link to="/">
               <a class="waves-effect waves-light btn red lighten-1 z-depth-4"><i class="material-icons left">close</i>Cancelar</a>
-            </router-link>            
+            </router-link>
+            
           </div>
         </div>
       </div>
@@ -84,8 +107,13 @@
 
 <script>
 import RegisterEmployeeService from "@/services/RegisterEmployeeService"
+import {Circle10} from 'vue-loading-spinner'
+
 export default {
   name: 'new-employee',
+  components: {
+    Circle10
+  },
   data () {
     return {
       tagid: '',
@@ -96,6 +124,7 @@ export default {
       email: '',
       address: '',
       photo: '',
+      show: false
     }
   },
   methods: {
@@ -133,10 +162,14 @@ export default {
           })          
 
           window.alert('Funcionário criado com sucesso!');
-
-          this.$router.push('/')
+          this.show = true
+          setTimeout(this.goToHome, 2000)
         }        
       }      
+    },
+    goToHome () {
+      this.show = false
+      this.$router.push('/')
     }
   }
 }

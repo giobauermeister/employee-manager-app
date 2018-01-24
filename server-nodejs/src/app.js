@@ -5,7 +5,7 @@ const morgan = require('morgan')
 const {sequelize} = require('./models')
 const config = require('./config/config')
 const multer = require('multer')
-const path = require('path')
+var path = require('path')
 
 const app = express()
 app.use(morgan('combined'))
@@ -15,7 +15,7 @@ app.use(cors())
 require('./routes')(app)
 
 const storage = multer.diskStorage({
-  destination: './public/photos',
+  destination: path.join(__dirname, '../../../simple-hello-server/dist/static/userphotos'),
   filename: function (req, file, cb) {
     cb(null, file.originalname)
   }

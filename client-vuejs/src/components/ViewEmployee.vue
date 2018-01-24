@@ -62,7 +62,7 @@ export default {
           vm.Cellphone = doc.Cellphone
           vm.Email = doc.Email
           vm.Address = doc.Address
-          vm.ImgLink = '../../static/' + doc.TagID + '.png'
+          vm.ImgLink = '/static/userphotos/' + doc.TagID + '.png'
           vm.id = doc.id
         })        
       })            
@@ -83,7 +83,7 @@ export default {
           this.Cellphone = doc.Cellphone,
           this.Email = doc.Email,
           this.Address = doc.Address,
-          this.ImgLink = '../../static/' + doc.TagID + '.png'
+          this.ImgLink = '/static/userphotos/' + doc.TagID + '.png'
         })  
       })
     },

@@ -16,7 +16,7 @@
                 <p><font size="3"><b>{{employee.EmployeeName}}</b></font></p>
                 <p>{{employee.Title}}</p> 
                 <router-link class="secondary-content" v-bind:to="{name: 'view-employee', params: {employee_id: employee.TagID}}">
-                  <i class="material-icons icon-blue">info_outline</i>
+                  <i class="material-icons icon-blue" style="font-size: 32px">add_box</i>
                 </router-link>             
               </li>
             </ul>           
@@ -50,12 +50,12 @@ export default {
           'Cellphone': doc.Cellphone,
           'Email': doc.Email,
           'Address': doc.Address,
-          'ImgLink': '../../static/userphotos/' + doc.TagID + '.png'
+          'ImgLink': '/static/userphotos/' + doc.TagID + '.png'
         }
         // console.log(data.EmployeeName)
         // console.log(data.Title)
         this.employees.push(data)
-        // console.log(data.ImgLink)
+        console.log(data.ImgLink)
         
                 
       })
@@ -64,13 +64,16 @@ export default {
       // this.employees = employeeData.data
       // console.log(this.employees)
     }) // cloud catch error here like so: https://stackoverflow.com/questions/44456594/why-is-axios-get-returning-a-promise-object
-  }
+  }  
 }
 </script>
 
 <style scoped>
 i.icon-blue {
-    color: #039be5;
+  color: #039be5;
+}
+.collection .collection-item.avatar {
+    min-height: 65px;
 }
 </style>
 
