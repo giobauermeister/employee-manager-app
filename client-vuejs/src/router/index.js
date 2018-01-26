@@ -6,6 +6,7 @@ import EditEmployee from '@/components/EditEmployee'
 import NewEmployee from '@/components/NewEmployee'
 import ViewEmployee from '@/components/ViewEmployee'
 import UploadPhoto from '@/components/UploadPhoto'
+import Timesheets from '@/components/Timesheets'
 
 Vue.use(Router)
 
@@ -25,6 +26,11 @@ export default new Router({
       path: '/upload',
       name: 'upload-photo',
       component: UploadPhoto
+    },
+    {
+      path: '/timesheets',
+      name: 'timesheets',
+      component: Timesheets
     },
     {
       path: '/:employee_id',

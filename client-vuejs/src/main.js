@@ -4,6 +4,10 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+import VueGoodTable from 'vue-good-table';
+
+Vue.use(VueGoodTable);
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

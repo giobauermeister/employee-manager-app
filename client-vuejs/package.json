@@ -13,6 +13,8 @@
     "axios": "^0.17.1",
     "vue": "^2.5.2",
     "vue-full-loading": "^1.0.3",
+    "vue-good-table": "^1.19.1",
+    "vue-google-signin-button": "^1.0.2",
     "vue-loading-spinner": "^1.0.11",
     "vue-picture-input": "^2.0.1",
     "vue-router": "^3.0.1",
