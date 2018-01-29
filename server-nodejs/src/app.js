@@ -39,6 +39,6 @@ app.post('/uploadphoto', (req, res) => {
 
 sequelize.sync()
   .then(() => {
-    app.listen(config.port)
+    app.listen(config.port, 'localhost')
     console.log(`Server started on port ${config.port}`)
   })

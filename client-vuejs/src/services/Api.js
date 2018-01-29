@@ -2,6 +2,7 @@ import axios from 'axios'
 
 export default () => {
   return axios.create({
-    baseURL: 'http://piclock.local:2000/'
+    baseURL: 'http://localhost:2000/'
+    // baseURL: 'http://piclock.local:2000/'
   })
 }

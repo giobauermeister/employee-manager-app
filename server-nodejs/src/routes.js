@@ -11,4 +11,5 @@ module.exports = app => {
   app.post('/viewemployee', FetchDatabaseController.fetchOneEmployee)
   app.post('/deleteemployee', DeleteEmployeeController.deleteEmployee)
   app.post('/updateemployee', UpdateEmployeeController.updateEmployee)
+  app.get('/fetchtimesheets', FetchDatabaseController.fetchTimesheets)
 }
