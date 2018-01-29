@@ -15,7 +15,7 @@ app.use(cors())
 require('./routes')(app)
 
 const storage = multer.diskStorage({
-  destination: path.join(__dirname, '../../../simple-hello-server/dist/static/userphotos'),
+  destination: path.join(__dirname, '../../../employee-manager-app/vuejs-app-server/dist/static/userphotos'),
   filename: function (req, file, cb) {
     cb(null, file.originalname)
   }
@@ -39,6 +39,6 @@ app.post('/uploadphoto', (req, res) => {
 
 sequelize.sync()
   .then(() => {
-    app.listen(config.port, 'localhost')
+    app.listen(config.port, 'piclock.local')
     console.log(`Server started on port ${config.port}`)
   })

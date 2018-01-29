@@ -2,7 +2,7 @@
   <div class="timesheets">
 
     <div class="row" style="padding-top: 30px;">
-      <div class="col s6" >
+      <div class="col s3" >
         <router-link to="/">
           <a class="waves-effect waves-light btn grey z-depth-4"><i class="material-icons left">keyboard_arrow_left</i>Voltar</a>
         </router-link>
@@ -19,7 +19,7 @@
         </vue-monthly-picker>
       </div-->
       <div class="col s3">
-        <datepicker v-on:selected="customFormatter" placeholder="Data" format="MMMM yyyy" name="teste" language="pt-br"></datepicker>
+        <datepicker v-on:selected="customFormatter" placeholder="Escolher Data" format="MMMM yyyy" name="teste" language="pt-br"></datepicker>
       </div>
     </div>
 
@@ -73,6 +73,7 @@ export default {
           label: 'Nome',
           field: 'EmployeeName',
           filterable: true,
+          html: true,
         },
         {
           label: 'Data',
@@ -81,60 +82,43 @@ export default {
           inputFormat: 'YYYY-MM-DD',
           outputFormat: 'YYYY-MM-DD',
           filterable: true,
+          html: true,
         },
         {
           label: 'Clock In',
           field: 'ClockIn',
           type: 'time',
           inputFormat: 'HH:MM',
-          outputFormat: 'HH:MM'
+          outputFormat: 'HH:MM',
+          html: true,
         },
         {
           label: 'Lunch In',
           field: 'LunchIn',
           type: 'time',
           inputFormat: 'HH:MM',
-          outputFormat: 'HH:MM'
+          outputFormat: 'HH:MM',
+          html: true,
         },
         {
           label: 'Lunch Out',
           field: 'LunchOut',
           type: 'time',
           inputFormat: 'HH:MM',
-          outputFormat: 'HH:MM'
+          outputFormat: 'HH:MM',
+          html: true,
         },
         {
           label: 'Clock Out',
           field: 'ClockOut',
           type: 'time',
           inputFormat: 'HH:MM',
-          outputFormat: 'HH:MM'
+          outputFormat: 'HH:MM',
+          html: true,
         },
       ],
       rows: [
         // {name:"",date: '01-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '02-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '03-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '04-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '05-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '08-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '09-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '10-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '11-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '12-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '15-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '16-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '17-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '18-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '19-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '22-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '23-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '24-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '25-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '26-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '29-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '30-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
-        // {name:"Giovanni",date: '31-01-2018',clockin: '09:15',lunchin: '09:15',lunchout: '09:15',clockout: '09:15'},
       ],
     }
   },
@@ -171,7 +155,7 @@ export default {
           // console.log(data.EmployeeName)
           // console.log(data.Title)
           this.rows.push(data)
-          console.log(data)
+          //console.log(data)
           
                   
         })
@@ -201,7 +185,7 @@ export default {
         // console.log(data.EmployeeName)
         // console.log(data.Title)
         this.rows.push(data)
-        console.log(data)
+        //console.log(data)
         
                 
       })
